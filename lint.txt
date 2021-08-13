@@ -1,0 +1,28 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "python.linting.pylintEnabled": true,
+}
+
+
+{
+    "explorer.confirmDelete": false,
+    "javascript.format.enable": false,
+    "editor.formatOnSave": false,
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.largeFileOptimizations": false,
+    "files.insertFinalNewline": true,
+    "explorer.confirmDragAndDrop": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "window.titleBarStyle": "custom",
+}
+
