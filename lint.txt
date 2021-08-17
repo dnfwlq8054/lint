@@ -26,3 +26,28 @@
     "window.titleBarStyle": "custom",
 }
 
+awk -F'.zip$' '{print \$1}' 이 부분 말씀하시는 것 같은데, 저건 쉘 스크립트상의 변수가 아니라 awk의 명령어 입니다.
+
+따라서 $1 표시는 awk를 통해 분리된 문자열의 첫번째 값을 출력한다는 뜻입니다.
+
+awk는 기본적으로 문장을 문자 단위로 나누며, default로 공백 기준으로 나눠서 출력해줍니다.
+
+-F를 통해 분리할 문자 혹은 문자열을 지정해주면 해당되는 문자 혹은 문자열을 지우고 지운 곳을 기준으로 문장을 나누게 됩니다.
+
+ex)
+$ echo 'ABC-dev-test.zip' | awk -F-
+-> $1 = ABC, $2 = dev, $3 = test.zip
+
+$ echo 'ABC-dev-test.zip hi test' | awk -F- '{for(i=1;i<=NF;i++){print "Field Number:"i " Field value is: " $i}}'
+명령을 통해서 bash 창에서 직접 확인도 가능 합니다.
+
+본론으로 돌아와서,
+echo {} | awk -F'.zip$' '{print \$1} 의 의미는 .zip 기준으로 문자열을 잘랐을 때 총 2개의 레코드가 생기는데,
+Gopax-dev-test.zip 라는 파일 기준으로
+$1에는 Gopax-dev-test이 들어가고 $2에는 공백이 들어가게 됩니다. (마지막 문자를 기준으로 자른 것이기 때문에 .zip 뒷부분은 없으므로 공백이 들어갑니다.)
+따라서 $1을 출력해준 것이고,
+
+마찬가지로 awk -F'^Gopax' '{print \$NF} 부분을 실행하면,
+$1에는 공백이 들어가고 $2에는 -dev-test가 들어가게 됩니다.
+
+NF는 awk로 분리되었을 때의 레코드의 총 갯수입니다. 즉, 마지막을 가르키게 됩니다.
